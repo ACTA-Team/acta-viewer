@@ -2,11 +2,22 @@
   "name": "acta-viewer",
   "version": "0.1.0",
   "private": true,
+  "description": "Viewer for ACTA verifiable credentials on Stellar.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACTA-Team/acta-viewer.git"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "16.4.0",
