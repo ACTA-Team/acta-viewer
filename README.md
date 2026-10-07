@@ -1,7 +1,6 @@
 # ACTA Viewer
 
 [![CI](https://github.com/ACTA-Team/acta-viewer/actions/workflows/ci.yml/badge.svg)](https://github.com/ACTA-Team/acta-viewer/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/ACTA-Team/acta-viewer/actions/workflows/codeql.yml/badge.svg)](https://github.com/ACTA-Team/acta-viewer/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Web viewer for [ACTA](https://acta.build) verifiable credentials and `did:stellar` identities on Stellar.
@@ -43,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000).
 src/
   app/          # App Router routes, layouts and global styles
 public/         # Static assets
-.github/        # CI workflows, Dependabot and templates
+.github/        # CI workflow and templates
 .husky/         # Git hooks
 ```
 

@@ -28,11 +28,4 @@ Hooks are managed with [Husky](https://typicode.github.io/husky/) and installed 
 
 ## Continuous integration
 
-Every push and pull request to `main` runs:
-
-- **CI** – format check, lint, typecheck and production build.
-- **CodeQL** – static security analysis (also weekly).
-- **Dependency Review** – blocks pull requests that add vulnerable dependencies.
-- **PR Title** – validates Conventional Commit titles.
-
-Dependabot opens weekly updates for npm packages and GitHub Actions.
+Every push and pull request to `main` runs the **CI** workflow, which lints the code and creates a production build.
