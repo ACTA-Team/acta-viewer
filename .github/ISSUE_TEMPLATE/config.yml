@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ACTA documentation
+    url: https://docs.acta.build
+    about: Guides and API reference for ACTA verifiable credentials.
