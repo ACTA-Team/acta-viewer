@@ -1,26 +1,253 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * ACTA design system, shared with the dApp.
+ *
+ * Light by default, dark when `.dark` is on <html>. Components only ever name
+ * tokens, never a theme, so both palettes stay in sync with the dApp's.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-surface: var(--surface);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-raised: var(--surface-raised);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-subtle: var(--primary-subtle);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-subtle: var(--success-subtle);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-subtle: var(--destructive-subtle);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-subtle: var(--info-subtle);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+
+  --shadow-card: var(--elevation-1);
+  --shadow-raised: var(--elevation-2);
+  --shadow-overlay: var(--elevation-3);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.5rem;
+
+  --background: #fafafa;
+  --surface: #ffffff;
+  --surface-sunken: #f4f4f5;
+  --surface-raised: #ffffff;
+  --foreground: #18181b;
+  --card: #ffffff;
+  --card-foreground: #18181b;
+
+  /* Amber with near-black ink: the one fill that reads in both themes. */
+  --primary: #d9a441;
+  --primary-hover: #c8942f;
+  --primary-foreground: #18181b;
+  --primary-subtle: #fdf6e4;
+
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #ececee;
+  --accent-foreground: #18181b;
+
+  /* Amber taken down far enough to pass as text. */
+  --brand: #9a6c12;
+  --brand-hover: #7d5709;
+
+  --border: #e4e4e7;
+  --border-strong: #d4d4d8;
+  --input: #d4d4d8;
+  --ring: #d9a441;
+
+  --success: #3f6212;
+  --success-foreground: #ffffff;
+  --success-subtle: #eef4e6;
+  --warning: #a1580a;
+  --warning-foreground: #ffffff;
+  --warning-subtle: #fbf1e0;
+  --destructive: #a92a1f;
+  --destructive-foreground: #ffffff;
+  --destructive-subtle: #fcebe9;
+  --info: #1f5f78;
+  --info-foreground: #ffffff;
+  --info-subtle: #e9f1f4;
+
+  --elevation-1: 0 1px 2px 0 rgb(24 24 27 / 0.05);
+  --elevation-2: 0 1px 3px 0 rgb(24 24 27 / 0.08), 0 1px 2px -1px rgb(24 24 27 / 0.04);
+  --elevation-3: 0 10px 24px -6px rgb(24 24 27 / 0.12), 0 4px 8px -4px rgb(24 24 27 / 0.06);
+
+  --stage-ground: 244 244 245;
+}
+
+.dark {
+  --background: #141414;
+  --surface: #1e1e1e;
+  --surface-sunken: #191919;
+  --surface-raised: #272727;
+  --foreground: #f4f4f5;
+  --card: #1e1e1e;
+  --card-foreground: #f4f4f5;
+
+  --primary: #d9a441;
+  --primary-hover: #e6b558;
+  --primary-foreground: #18181b;
+  --primary-subtle: rgb(217 164 65 / 0.16);
+
+  --secondary: #272727;
+  --secondary-foreground: #f4f4f5;
+  --muted: #232323;
+  --muted-foreground: #a1a1aa;
+  --accent: #2c2c2c;
+  --accent-foreground: #f4f4f5;
+
+  --brand: #e8bd63;
+  --brand-hover: #f0cd85;
+
+  --border: #2e2e2e;
+  --border-strong: #3f3f46;
+  --input: #3f3f46;
+  --ring: #d9a441;
+
+  --success: #a3c46a;
+  --success-foreground: #16200a;
+  --success-subtle: rgb(163 196 106 / 0.16);
+  --warning: #e9b558;
+  --warning-foreground: #1f1503;
+  --warning-subtle: rgb(233 181 88 / 0.16);
+  --destructive: #ef8b7c;
+  --destructive-foreground: #240c08;
+  --destructive-subtle: rgb(239 139 124 / 0.16);
+  --info: #7fb8cd;
+  --info-foreground: #06181f;
+  --info-subtle: rgb(127 184 205 / 0.16);
+
+  --elevation-1: 0 1px 2px 0 rgb(0 0 0 / 0.55);
+  --elevation-2: 0 2px 6px -1px rgb(0 0 0 / 0.65);
+  --elevation-3: 0 16px 40px -12px rgb(0 0 0 / 0.8);
+
+  --stage-ground: 20 20 20;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/40;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-semibold tracking-[-0.02em] text-foreground;
+  }
+
+  /* Stellar addresses, DIDs and hashes. */
+  .mono {
+    @apply font-mono tracking-[-0.01em];
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Keyboard focus ring, offset from the element. */
+@utility focus-ring {
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
+/* Small uppercase rule above a group of fields. */
+@utility section-label {
+  @apply text-[11px] font-semibold tracking-[0.08em] text-muted-foreground uppercase;
+}
+
+/* A working surface: one step above the canvas, hairline border. */
+@utility panel {
+  @apply rounded-md border border-border bg-surface;
+}
+
+/* Quiet ground behind the search hero, same treatment as the dApp's sign-in. */
+@utility stage {
+  background-color: rgb(var(--stage-ground));
+  background-image:
+    radial-gradient(ellipse 85% 60% at 50% 38%, rgb(255 255 255 / 0.85) 0%, transparent 72%),
+    radial-gradient(ellipse 70% 55% at 82% 92%, rgb(15 23 42 / 0.05) 0%, transparent 70%);
+}
+
+.dark .stage {
+  background-image:
+    radial-gradient(ellipse 85% 60% at 50% 38%, rgb(255 255 255 / 0.07) 0%, transparent 72%),
+    radial-gradient(ellipse 70% 55% at 82% 92%, rgb(255 255 255 / 0.03) 0%, transparent 70%);
+}
+
+/* Dot grid, faded out at the edges. */
+@utility stage-grid {
+  background-image: radial-gradient(rgb(15 23 42 / 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 30%, transparent 78%);
+}
+
+.dark .stage-grid {
+  background-image: radial-gradient(rgb(250 250 250 / 0.08) 1px, transparent 1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
