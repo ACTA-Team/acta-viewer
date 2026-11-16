@@ -1,9 +1,8 @@
 "use server";
 
-import { createHash, timingSafeEqual } from "node:crypto";
-
 import { findCredential } from "@/lib/acta/credential";
-import { CONCEPT_CONTENT, CONCEPT_SECRET_CODE, type RevealedContent } from "@/lib/concept";
+import { checkAccessCode } from "@/lib/access-codes";
+import { CONCEPT_CONTENT, type RevealedContent } from "@/lib/concept";
 import { isNetworkId } from "@/lib/stellar/networks";
 
 export type RevealState =
@@ -11,11 +10,8 @@ export type RevealState =
   | { status: "error"; message: string }
   | { status: "revealed"; content: RevealedContent };
 
-/** Compares digests so the check takes the same time whatever the input. */
-function codeMatches(input: string): boolean {
-  const digest = (value: string) => createHash("sha256").update(value).digest();
-  return timingSafeEqual(digest(input.trim().toUpperCase()), digest(CONCEPT_SECRET_CODE));
-}
+const MAX_CODE_LENGTH = 128;
+const INVALID = "This password is not valid for this credential.";
 
 export async function revealCredential(
   _previous: RevealState,
@@ -24,20 +20,31 @@ export async function revealCredential(
   const network = String(formData.get("network") ?? "");
   const vault = String(formData.get("vault") ?? "");
   const vcId = String(formData.get("vcId") ?? "");
-  const code = String(formData.get("code") ?? "");
+  const code = String(formData.get("code") ?? "").trim();
 
-  if (!code.trim()) {
-    return { status: "error", message: "Enter the access code." };
+  if (!code) {
+    return { status: "error", message: "Enter the password." };
   }
-  if (!isNetworkId(network) || !codeMatches(code)) {
-    return { status: "error", message: "This code is not valid for this credential." };
+  if (!isNetworkId(network) || code.length > MAX_CODE_LENGTH) {
+    return { status: "error", message: INVALID };
   }
 
-  // The code never unlocks anything on its own: the credential it is presented
-  // for must still exist in an ACTA vault at this moment.
+  const check = await checkAccessCode(network, vcId, code);
+  if (check === "unavailable") {
+    return {
+      status: "error",
+      message: "The password could not be checked right now. Try again in a moment.",
+    };
+  }
+  if (check === "invalid") {
+    return { status: "error", message: INVALID };
+  }
+
+  // The password never unlocks anything on its own: the credential it is
+  // presented for must still exist in an official ACTA vault at this moment.
   const credential = await findCredential(network, vault, vcId);
   if (!credential) {
-    return { status: "error", message: "This code is not valid for this credential." };
+    return { status: "error", message: INVALID };
   }
 
   return { status: "revealed", content: CONCEPT_CONTENT };
