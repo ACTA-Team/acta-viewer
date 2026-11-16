@@ -3,13 +3,10 @@ import "server-only";
 /*
  * CONCEPT ONLY.
  *
- * Stands in for what acta-api will provide: a random access code generated per
- * credential at issuance, and the decrypted payload it unlocks. Kept in a
- * server-only module so neither ever reaches the browser bundle.
+ * The viewer password is real: the issuer sets it per credential in the ACTA
+ * back office and `@/lib/access-codes` checks it. What it unlocks is not yet:
+ * this sample stands in for the decrypted payload until acta-api returns it.
  */
-
-/** The single access code accepted by this concept, for every credential. */
-export const CONCEPT_SECRET_CODE = "ACTA-7Q2K-9XPM";
 
 export interface RevealedField {
   label: string;

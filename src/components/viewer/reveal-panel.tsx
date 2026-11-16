@@ -67,8 +67,8 @@ export function RevealPanel({
         <div>
           <p className="text-sm font-semibold text-foreground">The content is encrypted</p>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Only ciphertext is stored on-chain. Enter the access code the holder shared with you to
-            see the credential data.
+            Only ciphertext is stored on-chain. Enter the password the issuer set for this
+            credential to see its data.
           </p>
         </div>
       </div>
@@ -78,11 +78,13 @@ export function RevealPanel({
           <KeyRound className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             name="code"
-            placeholder="ACTA-XXXX-XXXX"
+            type="password"
+            placeholder="Password"
             autoComplete="off"
             spellCheck={false}
-            className="mono pl-9 uppercase"
-            aria-label="Access code"
+            maxLength={128}
+            className="mono pl-9"
+            aria-label="Credential password"
             aria-invalid={state.status === "error" || undefined}
           />
         </div>
