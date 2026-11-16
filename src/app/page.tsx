@@ -12,7 +12,7 @@ const POINTS = [
   {
     icon: LockKeyhole,
     title: "Protected content",
-    text: "Credential data is encrypted. It is only shown with the holder's access code.",
+    text: "Credential data is encrypted. It is only shown with the password set by the issuer.",
   },
   {
     icon: Blocks,
@@ -31,7 +31,7 @@ export default function Home() {
           <ActaMark size={44} />
           <div className="space-y-3">
             <p className="section-label">Verifiable credentials</p>
-            <h1 className="text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
+            <h1 className="text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
               Verify an ACTA credential
             </h1>
             <p className="max-w-md text-base leading-relaxed text-muted-foreground">

@@ -1,18 +1,28 @@
 @import "tailwindcss";
 
 /*
- * ACTA design system, shared with the dApp.
+ * ACTA design system, from the brandbook.
+ *
+ *   Vault Black      #0B0A1A   ink, dark canvas
+ *   Cipher Navy      #161748   dark surfaces
+ *   Block Blue       #3446EB   the one action colour, brand accents
+ *   Seal Red         #C21E23   errors, revocation, the occasional seal dot
+ *   Hash Silver      #B7B3BA   secondary text on dark
+ *   Parchment White  #FCF8EE   light canvas, ink on dark
+ *
+ * Type: Sora (thin, light, regular, semibold) and Anonymous Pro for
+ * addresses, IDs and hashes.
  *
  * Light by default, dark when `.dark` is on <html>. Components only ever name
- * tokens, never a theme, so both palettes stay in sync with the dApp's.
+ * tokens, never a theme.
  */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sora);
+  --font-mono: var(--font-anonymous-pro);
 
   --color-surface: var(--surface);
   --color-surface-sunken: var(--surface-sunken);
@@ -35,6 +45,7 @@
 
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
+  --color-seal: var(--seal);
 
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
@@ -67,103 +78,111 @@
 :root {
   --radius: 0.5rem;
 
-  --background: #fafafa;
-  --surface: #ffffff;
-  --surface-sunken: #f4f4f5;
+  /* Parchment canvas, Vault Black ink. */
+  --background: #fcf8ee;
+  --surface: #fffdf8;
+  --surface-sunken: #f4efe2;
   --surface-raised: #ffffff;
-  --foreground: #18181b;
-  --card: #ffffff;
-  --card-foreground: #18181b;
+  --foreground: #0b0a1a;
+  --card: #fffdf8;
+  --card-foreground: #0b0a1a;
 
-  /* Amber with near-black ink: the one fill that reads in both themes. */
-  --primary: #d9a441;
-  --primary-hover: #c8942f;
-  --primary-foreground: #18181b;
-  --primary-subtle: #fdf6e4;
+  /* Block Blue with Parchment ink. */
+  --primary: #3446eb;
+  --primary-hover: #2836c9;
+  --primary-foreground: #fcf8ee;
+  --primary-subtle: #e6e8fc;
 
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --accent: #ececee;
-  --accent-foreground: #18181b;
+  --secondary: #f1ecdf;
+  --secondary-foreground: #0b0a1a;
+  --muted: #f1ecdf;
+  /* Hash Silver is too light to read on parchment; this is it taken down. */
+  --muted-foreground: #5c5866;
+  --accent: #e9e3d3;
+  --accent-foreground: #0b0a1a;
 
-  /* Amber taken down far enough to pass as text. */
-  --brand: #9a6c12;
-  --brand-hover: #7d5709;
+  --brand: #3446eb;
+  --brand-hover: #2836c9;
+  --seal: #c21e23;
 
-  --border: #e4e4e7;
-  --border-strong: #d4d4d8;
-  --input: #d4d4d8;
-  --ring: #d9a441;
+  --border: #e5dfd0;
+  --border-strong: #d3ccbc;
+  --input: #cfc8ba;
+  --ring: #3446eb;
 
-  --success: #3f6212;
-  --success-foreground: #ffffff;
-  --success-subtle: #eef4e6;
-  --warning: #a1580a;
-  --warning-foreground: #ffffff;
-  --warning-subtle: #fbf1e0;
-  --destructive: #a92a1f;
-  --destructive-foreground: #ffffff;
-  --destructive-subtle: #fcebe9;
-  --info: #1f5f78;
-  --info-foreground: #ffffff;
-  --info-subtle: #e9f1f4;
+  --success: #2f6b3a;
+  --success-foreground: #fcf8ee;
+  --success-subtle: #e7f0e4;
+  --warning: #9a5b0b;
+  --warning-foreground: #fcf8ee;
+  --warning-subtle: #f8edd8;
+  --destructive: #c21e23;
+  --destructive-foreground: #fcf8ee;
+  --destructive-subtle: #fbe7e4;
+  --info: #161748;
+  --info-foreground: #fcf8ee;
+  --info-subtle: #e6e8fc;
 
-  --elevation-1: 0 1px 2px 0 rgb(24 24 27 / 0.05);
-  --elevation-2: 0 1px 3px 0 rgb(24 24 27 / 0.08), 0 1px 2px -1px rgb(24 24 27 / 0.04);
-  --elevation-3: 0 10px 24px -6px rgb(24 24 27 / 0.12), 0 4px 8px -4px rgb(24 24 27 / 0.06);
+  --elevation-1: 0 1px 2px 0 rgb(11 10 26 / 0.05);
+  --elevation-2: 0 1px 3px 0 rgb(11 10 26 / 0.08), 0 1px 2px -1px rgb(11 10 26 / 0.04);
+  --elevation-3: 0 10px 24px -6px rgb(11 10 26 / 0.12), 0 4px 8px -4px rgb(11 10 26 / 0.06);
 
-  --stage-ground: 244 244 245;
+  --stage-ground: 252 248 238;
+  --stripe: 52 70 235;
 }
 
 .dark {
-  --background: #141414;
-  --surface: #1e1e1e;
-  --surface-sunken: #191919;
-  --surface-raised: #272727;
-  --foreground: #f4f4f5;
-  --card: #1e1e1e;
-  --card-foreground: #f4f4f5;
+  /* Vault Black canvas, Cipher Navy surfaces, Parchment ink. */
+  --background: #0b0a1a;
+  --surface: #11102a;
+  --surface-sunken: #08071a;
+  --surface-raised: #161748;
+  --foreground: #fcf8ee;
+  --card: #11102a;
+  --card-foreground: #fcf8ee;
 
-  --primary: #d9a441;
-  --primary-hover: #e6b558;
-  --primary-foreground: #18181b;
-  --primary-subtle: rgb(217 164 65 / 0.16);
+  --primary: #3446eb;
+  --primary-hover: #4a5af0;
+  --primary-foreground: #fcf8ee;
+  --primary-subtle: rgb(52 70 235 / 0.18);
 
-  --secondary: #272727;
-  --secondary-foreground: #f4f4f5;
-  --muted: #232323;
-  --muted-foreground: #a1a1aa;
-  --accent: #2c2c2c;
-  --accent-foreground: #f4f4f5;
+  --secondary: #161748;
+  --secondary-foreground: #fcf8ee;
+  --muted: #14133a;
+  --muted-foreground: #b7b3ba;
+  --accent: #1e1f55;
+  --accent-foreground: #fcf8ee;
 
-  --brand: #e8bd63;
-  --brand-hover: #f0cd85;
+  /* Block Blue lifted until it reads as text on Vault Black. */
+  --brand: #8c97f7;
+  --brand-hover: #aeb6fa;
+  --seal: #c21e23;
 
-  --border: #2e2e2e;
-  --border-strong: #3f3f46;
-  --input: #3f3f46;
-  --ring: #d9a441;
+  --border: #1f1e45;
+  --border-strong: #2c2b5c;
+  --input: #2c2b5c;
+  --ring: #3446eb;
 
-  --success: #a3c46a;
-  --success-foreground: #16200a;
-  --success-subtle: rgb(163 196 106 / 0.16);
+  --success: #8ccb98;
+  --success-foreground: #0b0a1a;
+  --success-subtle: rgb(140 203 152 / 0.14);
   --warning: #e9b558;
-  --warning-foreground: #1f1503;
-  --warning-subtle: rgb(233 181 88 / 0.16);
-  --destructive: #ef8b7c;
-  --destructive-foreground: #240c08;
-  --destructive-subtle: rgb(239 139 124 / 0.16);
-  --info: #7fb8cd;
-  --info-foreground: #06181f;
-  --info-subtle: rgb(127 184 205 / 0.16);
+  --warning-foreground: #0b0a1a;
+  --warning-subtle: rgb(233 181 88 / 0.14);
+  /* Seal Red lifted for contrast on Vault Black. */
+  --destructive: #f0686b;
+  --destructive-foreground: #0b0a1a;
+  --destructive-subtle: rgb(194 30 35 / 0.2);
+  --info: #8c97f7;
+  --info-foreground: #0b0a1a;
+  --info-subtle: rgb(52 70 235 / 0.16);
 
   --elevation-1: 0 1px 2px 0 rgb(0 0 0 / 0.55);
   --elevation-2: 0 2px 6px -1px rgb(0 0 0 / 0.65);
   --elevation-3: 0 16px 40px -12px rgb(0 0 0 / 0.8);
 
-  --stage-ground: 20 20 20;
+  --stage-ground: 11 10 26;
+  --stripe: 52 70 235;
 }
 
 @layer base {
@@ -181,7 +200,6 @@
 
   body {
     @apply bg-background font-sans text-foreground antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   h1,
@@ -191,9 +209,9 @@
     @apply font-semibold tracking-[-0.02em] text-foreground;
   }
 
-  /* Stellar addresses, DIDs and hashes. */
+  /* Stellar addresses, DIDs and hashes, in Anonymous Pro. */
   .mono {
-    @apply font-mono tracking-[-0.01em];
+    @apply font-mono;
   }
 }
 
@@ -212,29 +230,46 @@
   @apply rounded-md border border-border bg-surface;
 }
 
-/* Quiet ground behind the search hero, same treatment as the dApp's sign-in. */
+/* Ground behind the search hero: a Block Blue glow on the canvas. */
 @utility stage {
   background-color: rgb(var(--stage-ground));
   background-image:
-    radial-gradient(ellipse 85% 60% at 50% 38%, rgb(255 255 255 / 0.85) 0%, transparent 72%),
-    radial-gradient(ellipse 70% 55% at 82% 92%, rgb(15 23 42 / 0.05) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 55% at 50% 0%, rgb(52 70 235 / 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 45% at 85% 100%, rgb(194 30 35 / 0.04) 0%, transparent 70%);
 }
 
 .dark .stage {
   background-image:
-    radial-gradient(ellipse 85% 60% at 50% 38%, rgb(255 255 255 / 0.07) 0%, transparent 72%),
-    radial-gradient(ellipse 70% 55% at 82% 92%, rgb(255 255 255 / 0.03) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgb(52 70 235 / 0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 45% at 85% 100%, rgb(22 23 72 / 0.9) 0%, transparent 70%);
 }
 
-/* Dot grid, faded out at the edges. */
+/* The brandbook's vertical bars, fading out towards the bottom. */
 @utility stage-grid {
-  background-image: radial-gradient(rgb(15 23 42 / 0.09) 1px, transparent 1px);
-  background-size: 22px 22px;
-  mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 30%, transparent 78%);
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgb(var(--stripe) / 0.07) 0 2px,
+    transparent 2px 22px
+  );
+  mask-image: linear-gradient(to bottom, #000 0%, rgb(0 0 0 / 0.5) 45%, transparent 85%);
 }
 
 .dark .stage-grid {
-  background-image: radial-gradient(rgb(250 250 250 / 0.08) 1px, transparent 1px);
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgb(var(--stripe) / 0.14) 0 2px,
+    transparent 2px 22px
+  );
+}
+
+/* The brandbook's "+" registration mark, for corners. */
+@utility plus-mark {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat;
 }
 
 @media (prefers-reduced-motion: reduce) {
