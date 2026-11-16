@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Anonymous_Pro, Sora } from "next/font/google";
 
 import { SiteFooter, SiteHeader } from "@/components/viewer/site-header";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Brandbook typography: Sora for text, Anonymous Pro for addresses, IDs and hashes.
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
+  weight: ["100", "300", "400", "600"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const anonymousPro = Anonymous_Pro({
+  variable: "--font-anonymous-pro",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full`}
+      className={`${sora.variable} ${anonymousPro.variable} h-full`}
       suppressHydrationWarning
     >
       <head>

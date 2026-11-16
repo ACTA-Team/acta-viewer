@@ -10,8 +10,13 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-2.5 rounded-md focus-ring">
           <ActaMark size={24} alt="ACTA" priority />
           <span className="text-sm font-semibold tracking-tight text-foreground">ACTA</span>
-          <span className="rounded-sm border border-border bg-muted px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+          <span className="relative rounded-sm border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] font-bold tracking-[0.12em] text-muted-foreground uppercase">
             Viewer
+            {/* The brandbook's seal dot. */}
+            <span
+              className="absolute -top-1 -right-1 size-1.5 rounded-full bg-seal"
+              aria-hidden="true"
+            />
           </span>
         </Link>
         {/*

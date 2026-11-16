@@ -139,9 +139,9 @@ export function CredentialCard({ credential }: { credential: OnChainCredential }
   return (
     <div className="mx-auto w-full max-w-3xl px-5 py-10 lg:py-14">
       <div className="relative overflow-hidden rounded-3xl border border-border bg-surface shadow-overlay">
-        <div className="absolute top-0 left-0 h-px w-full bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+        <div className="absolute top-0 left-0 h-px w-full bg-linear-to-r from-transparent via-primary/60 to-transparent" />
         <div className="absolute -top-32 -right-32 size-64 rounded-full bg-primary-subtle blur-3xl" />
-        <div className="absolute -bottom-32 -left-32 size-64 rounded-full bg-success-subtle blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 size-64 rounded-full bg-info-subtle blur-3xl" />
 
         <div className="relative px-5 py-8 sm:px-12 sm:py-12">
           <div className="mb-10 flex items-center justify-between">
@@ -166,7 +166,7 @@ export function CredentialCard({ credential }: { credential: OnChainCredential }
             <p className="mb-3 text-[10px] font-semibold tracking-[0.3em] text-muted-foreground uppercase">
               Verifiable credential
             </p>
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
               {status.state === "valid" ? "Authentic credential" : "Credential not valid"}
             </h1>
             <p className="mono mt-3 text-xs break-all text-muted-foreground">{vcId}</p>
